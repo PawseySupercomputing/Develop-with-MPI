@@ -1,0 +1,13 @@
+CC = cc
+F90 = ftn
+MPICC = cc
+MPIF90 = ftn
+CFLAGS= -g
+SOURCE=.
+
+all: hello  
+
+hello:
+	$(CC) $(CFLAGS) $(SOURCE)/hello-mpi.c -o hello-mpi
+clean:
+	rm -r hello-mpi  

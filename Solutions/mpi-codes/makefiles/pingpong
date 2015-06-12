@@ -1,0 +1,13 @@
+CC = cc
+F90 = ftn
+MPICC = cc
+MPIF90 = ftn
+CFLAGS= -g
+SOURCE=.
+
+all: pingpong 
+
+pingpong:
+	$(CC) $(CFLAGS) $(SOURCE)/pingpong.c -o pingpong-mpi
+clean:
+	rm -r pingpong-mpi 
