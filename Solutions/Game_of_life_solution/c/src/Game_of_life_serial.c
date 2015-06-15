@@ -1,9 +1,12 @@
 /***********************
 Conway Game of Life
+This source code is from https://www.citutor.org
+
 serial version
 ************************/
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #define NI 200        
 /* array sizes */
 #define NJ 200
@@ -24,6 +27,8 @@ void main() {
 		old[i] = malloc(nj*sizeof(int));
 		new[i] = malloc(nj*sizeof(int));
 	}
+	//New Addition 
+	srand(time(NULL));
 	/*  initialize elements of old to 0 or 1 */
 	for (i=1; i<=NI; i++) {
 		for (j=1; j<=NJ; j++) {

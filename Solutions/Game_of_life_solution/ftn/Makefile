@@ -21,5 +21,5 @@ mpi_collective:
 	$(MPIF90) $(CFLAGS) $(SOURCE)mpi_collective.f90 -o $(EXE_PREFIX)mpi_collective
 
 clean:
-	rm -r $(EXE_PREFIX)serial $(EXE_PREFIX)mpi-pnt2pnt $(EXE_PREFIX)mpi_pnt2pnt $(EXE_PREFIX)mpi_collective
+	rm -r $(EXE_PREFIX)serial $(EXE_PREFIX)init_mpi $(EXE_PREFIX)mpi_pnt2pnt $(EXE_PREFIX)mpi_collective
 

@@ -1,5 +1,7 @@
 /**************************************
       Conway Game of Life
+This source code is from https://www.citutor.org
+
  2-processor domain decomposition;
  domain decomposed with horizontal
  line, i.e., top half and bottom half
@@ -8,6 +10,7 @@
 #include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #define NI 200
 #define NJ 200
 #define NSTEPS 500
@@ -24,6 +27,9 @@ void main(int argc, char *argv[]){
   MPI_Comm_size(MPI_COMM_WORLD,&nprocs);
   MPI_Comm_rank(MPI_COMM_WORLD,&myid);
   /* domain decomposition */
+
+// New Addition
+  srand(time(NULL));
 
   /* nominal number of points per proc. in each direction
     (without ghost cells; assume numbers divide evenly) */ 

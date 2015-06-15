@@ -1,5 +1,6 @@
 !------------------------------------
 !     Conway Game of Life
+! This source code is from https://www.citutor.org
 ! 2 processors, domain decomposition
 ! in j direction only (divide domain
 ! with a vertical line)

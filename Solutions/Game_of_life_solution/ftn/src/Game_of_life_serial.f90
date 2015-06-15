@@ -1,5 +1,6 @@
 !----------------------
 !  Conway Game of Life
+! This source code is from https://www.citutor.org
 !    serial version
 !----------------------
 

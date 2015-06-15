@@ -19,10 +19,10 @@ done
 
 #copy sources
 
-cp ${SOL}/mpi-codes/src/hello-mpi.c ${WB}/exercise1/c
+echo -e "/* Exercise 1 \n * Write a hello world program which show rank of each \n * participating process and the total number of tasks.*/">> ${WB}/exercise1/c/hello-mpi.c
 cp ${SOL}/mpi-codes/makefiles/hello-world ${WB}/exercise1/c/Makefile
 
-cp ${SOL}/mpi-codes/src/pingpong.c ${WB}/exercise2/c
+echo -e "/* Exercise 2 \n * Write a mpi program with a maximum of 2 processes which send and receive \n * a message until one of the two reaches a limit and both processes exit.*/">> ${WB}/exercise2/c/pingpong.c
 cp ${SOL}/mpi-codes/makefiles/pingpong ${WB}/exercise2/c/Makefile
 
 for (( i=3; i<=6; i++ ))

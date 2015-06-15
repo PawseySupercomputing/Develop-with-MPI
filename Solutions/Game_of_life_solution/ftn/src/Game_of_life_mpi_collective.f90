@@ -1,7 +1,7 @@
 !------------------------------
 !     Conway Game of Life
-
-!     reduction operation
+! This source code is from https://www.citutor.org
+!     Reduction operation
 !------------------------------
 
 PROGRAM life

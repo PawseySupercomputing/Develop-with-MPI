@@ -1,6 +1,7 @@
 !-------------------------
 !  Conway Game of Life
-!  duplicate calculations
+!  This source code is from https://www.citutor.org
+!  Duplicate calculations
 !  on each process
 !-------------------------
 

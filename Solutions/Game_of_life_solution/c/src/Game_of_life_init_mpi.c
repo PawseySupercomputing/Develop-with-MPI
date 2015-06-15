@@ -1,5 +1,7 @@
 /*********************************************
   Conway Game of Life
+  This source code is from https://www.citutor.org
+
   initialize and finalize MPI;
   run duplicate calculation on each processor
 **********************************************/
@@ -7,6 +9,8 @@
 #include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
 #define NI 200        /* array sizes */
 #define NJ 200
 #define NSTEPS 500    /* number of time steps */
@@ -31,6 +35,9 @@ void main(int argc, char *argv[]){
     new[i] = malloc(nj*sizeof(int));
   }
 
+
+// New addition 
+srand(time(NULL));
   /*  initialize elements of old to 0 or 1 */
   for(i=1; i<=NI; i++){
     for(j=1; j<=NJ; j++){
