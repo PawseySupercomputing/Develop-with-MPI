@@ -1,0 +1,19 @@
+
+10:00  Introduction
+10:25  Exercise 1: "Hello World"
+10:40  Point-to-point communication
+10:55  Exercise 2: "Ping-pong"
+11:10  Break
+11:25  Non-blocking communication
+11:45  Exercise 3: "Pass a message around a ring"
+12:00  Lunch
+
+13:00  Communicators
+13:15  Exercise 4: "Using a Cartesian communicator"
+13:40  Collective Communication
+13:55  Exercise 5: "Using collective communication"
+14:10  Break
+14:25  Game of Life mini-code introduction
+14:30  Exercise 6: "Game of life"
+15:50  Overview of other topics and Summary
+16:00  Close
