@@ -178,14 +178,6 @@ program life
 
      call mpi_reduce(lcount, ncount, 1, MPI_INTEGER, MPI_SUM, 0, comm)
 
-!       do j = 1, jm
-!        do i = 1, im
-!           live = 0
-!           if (state(i,j,nc)) live = 1
-!           write (*, fmt = '(1x,i1)', advance = 'no') live
-!        end do
-!      write (*,*)
-!     end do
      if (rank == 0) then
         write (unit = *, fmt = '(a,i3,i3)') "Step, count: ", n, ncount 
      end if
