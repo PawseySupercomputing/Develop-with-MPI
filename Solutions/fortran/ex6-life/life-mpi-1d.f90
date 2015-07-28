@@ -14,11 +14,12 @@ program life
 
   integer, parameter :: imtot = 16
   integer, parameter :: jmtot = 16
+  integer, parameter :: nsteps = 12
 
   integer :: im, jm
   integer :: imp1, jmp1
   integer :: i, j
-  integer :: n, nsteps
+  integer :: n
   integer :: nc, np, tmp
   integer :: live, lcount, ncount
 
@@ -49,7 +50,8 @@ program life
   logical, dimension(ndims) :: periods
 
   ! MPI messages
-  integer, parameter :: my_tag = 9999
+  integer, parameter :: my_tagl = 9999
+  integer, parameter :: my_tagr = 9998
   integer, dimension(4) :: req
   integer, dimension(MPI_STATUS_SIZE, 4) :: status
 
@@ -76,7 +78,7 @@ program life
 
   call mpi_comm_rank(comm, rank, ifail)
   call mpi_cart_shift(comm, 0, 1, my_left, my_right, ifail)
-  call mpi_cart_coords(comm, rank, ndims, mycoords)
+  call mpi_cart_coords(comm, rank, ndims, mycoords, ifail)
 
   ! Commpute the number of points held locally on each rank
   ! Add one point at each end to hold the halo region
@@ -125,16 +127,19 @@ program life
      ! halo regions
 
      ! x-direction
+
      sxl(1:jm) = state(1,  1:jm, nc)
      sxr(1:jm) = state(im, 1:jm, nc)
-     call mpi_irecv(rxl, jm, MPI_LOGICAL, my_left, my_tag, comm, req(1), ifail)
-     call mpi_irecv(rxr, jm, MPI_LOGICAL, my_right, my_tag, comm, req(2), ifail)
-     call mpi_issend(sxl, jm, MPI_LOGICAL, my_left, my_tag, comm, req(3), ifail)
-     call mpi_issend(sxr, jm, MPI_LOGICAL, my_right, my_tag, comm, req(4), ifail)
+
+     call mpi_irecv(rxr, jm, MPI_LOGICAL, my_right, my_tagl, comm, req(1), ifail)
+     call mpi_irecv(rxl, jm, MPI_LOGICAL, my_left, my_tagr, comm, req(2), ifail)
+
+     call mpi_issend(sxl, jm, MPI_LOGICAL, my_left, my_tagl, comm, req(3), ifail)
+     call mpi_issend(sxr, jm, MPI_LOGICAL, my_right, my_tagr, comm, req(4), ifail)
      call mpi_waitall(4, req, status, ifail)
 
-     state(0,  1:jm, nc) = rxl(1:jm)
-     state(im, 1:jm, nc) = rxr(1:jm)
+     state(0,    1:jm, nc) = rxl(1:jm)
+     state(imp1, 1:jm, nc) = rxr(1:jm)
 
      ! y-direction
      state(0:imp1, 0,    nc) = state(0:imp1, jm, nc)
@@ -173,9 +178,16 @@ program life
 
      call mpi_reduce(lcount, ncount, 1, MPI_INTEGER, MPI_SUM, 0, comm)
 
+!       do j = 1, jm
+!        do i = 1, im
+!           live = 0
+!           if (state(i,j,nc)) live = 1
+!           write (*, fmt = '(1x,i1)', advance = 'no') live
+!        end do
+!      write (*,*)
+!     end do
      if (rank == 0) then
         write (unit = *, fmt = '(a,i3,i3)') "Step, count: ", n, ncount 
-        write (unit = *, fmt = *)
      end if
 
      ! swap time level pointers
