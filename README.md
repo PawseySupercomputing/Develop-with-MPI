@@ -17,6 +17,14 @@ If you are stuck, a solution can be seen the corresponding directory
 ./Solutions/c
 ./Solutions/fortran
 
+All C files should compile with the command
+
+magnus-1:> cc file.c
+
+All Fortran files should compile with the command
+
+magnus-1:> ftn file.f90
+
 
 * Exercise 1. "Hello World"
 
@@ -77,3 +85,21 @@ If you are stuck, a solution can be seen the corresponding directory
   a. MPI_Reduce()
   b. MPI_Allreduce()
 
+* Exercise 6. "John Conway's Game of Life"
+
+- This exercise puts together all the things covered in the exercises
+  above to write an MPI version of this simple cellular automata. We
+  provide a serial version which is written in such a way as to make
+  the parallelisation as simple as possible. We suggest you make a
+  copy of this version as a basis of a parallel version.
+
+  Note:
+  - A file life.ref is also provided which gives the reference output
+    which a correct parallel version should reproduce (minus the ascii
+    representation of the grid) from the given initial conditions.
+  - We suggest you try a one-dimensional domain decomposition in the
+    x-direction first.
+  - The initial conditions are, in general, a little awkward. If you
+    place the initial live cells in the left-hand local domain, you
+    should be able to get the message passing etc working first for
+    two MPI tasks.

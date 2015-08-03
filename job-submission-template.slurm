@@ -1,4 +1,5 @@
-#!/bin/bash -l
+#!/bin/bash --login
+
 #SBATCH --nodes=1
 #SBATCH --account=courses01
 #SBATCH --reservation=courseq
@@ -6,9 +7,9 @@
 #SBATCH --time=00:20:00
 #SBATCH --export=NONE
 
-# Change -n for ntasks and -N for ntasks per node.
+# The arguments to aprun are:
+#   -n   the total number of MPI tasks
+#   -N   the number of MPI tasks per node (max. 24 on Magnus).
 
-#Update name of executable here:
-EXE="hello-mpi"
-aprun -n 1 -d ${OMP_NUM_THREADS} -j 1 ./${EXE}
+aprun -n 1 -N 1 ./a.out
 
