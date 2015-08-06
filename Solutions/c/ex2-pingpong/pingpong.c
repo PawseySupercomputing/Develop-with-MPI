@@ -22,10 +22,9 @@ int main (int argc, char* argv[]){
 
   /* loop counter */
   int n;
+  double t;
 
   MPI_Init(&argc,&argv);
-
-  double t = MPI_Wtime();
 	
   MPI_Comm_rank(MPI_COMM_WORLD,&rank);
   MPI_Comm_size(MPI_COMM_WORLD,&size);
@@ -37,6 +36,8 @@ int main (int argc, char* argv[]){
 
   /* The message is fixed */
   sendbuffer = 1;
+
+  t = MPI_Wtime();
 
   for(i = 0; i< nexchange; i++){
            

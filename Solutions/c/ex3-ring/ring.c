@@ -14,15 +14,16 @@
 
 int main (int argc, char* argv[]){
 
-  int i, rank, size;
+  int rank, size;
   int my_prev, my_next;
   int sum;
 
   /*  Message information  */
   int sendbuf, recvbuf;
-  MPI_Request req[2];
   int my_tag = 9999;
-  MPI_Status status[2];
+  MPI_Request reqr;
+  MPI_Request reqs;
+  MPI_Status status[1];
 
   /* loop counter */
   int n;
@@ -44,18 +45,17 @@ int main (int argc, char* argv[]){
   sum = 0;
   sendbuf = rank;
         
-  for(i = 0; i < size; i++) {
-  	MPI_Irecv(&recvbuf, 1, MPI_INT, my_prev, my_tag, MPI_COMM_WORLD, req);
-        MPI_Issend(&sendbuf, 1, MPI_INT, my_next, my_tag, MPI_COMM_WORLD, req+1);
-           
-        /* When the receive has completed, we can use the contents of recvbuf */
-        MPI_Wait(req, status);
-        sum = sum + recvbuf;
+  for (n = 0; n < size; n++) {
+    MPI_Irecv(&recvbuf, 1, MPI_INT, my_prev, my_tag, MPI_COMM_WORLD, &reqr);
+    MPI_Issend(&sendbuf, 1, MPI_INT, my_next, my_tag, MPI_COMM_WORLD, &reqs);
 
-        /* When the send has completed, we can safely re-use the send buffer */
-        MPI_Wait(req, status);
-        sendbuf = recvbuf;
-    
+    /* When the receive has completed, we can use the contents of recvbuf */
+    MPI_Wait(&reqr, status);
+    sum = sum + recvbuf;
+
+    /* When the send has completed, we can safely re-use the send buffer */
+    MPI_Wait(&reqs, status);
+    sendbuf = recvbuf;
   }
 
   /* Display the result on all ranks, along with the correct answer */
