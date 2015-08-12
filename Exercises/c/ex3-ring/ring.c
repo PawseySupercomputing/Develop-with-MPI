@@ -6,7 +6,7 @@
 int main (int argc, char* argv[]){
 
   int rank, size;
-  int sum;
+  int sum = 0;
 
   /* ... */
 
