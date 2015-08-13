@@ -10,11 +10,13 @@ Fortran which can be used as a template for your solution. These stubs
 are found in
 
 ./Exercises/c
+
 ./Exercises/fortran
 
 If you are stuck, a solution can be seen the corresponding directory
 
 ./Solutions/c
+
 ./Solutions/fortran
 
 All C files should compile with the command
