@@ -2,7 +2,7 @@ CC = cc
 F90 = ftn
 MPICC = cc
 MPIF90 = ftn
-CFLAGS = -g
+CFLAGS = -g -craype-verbose
 SOURCE = src
 INC= -I ./include
 all: mpi-latency mpi-bandwidth-blocking mpi-bandwidth-nonblocking gaussian-serial gaussian-mpi
