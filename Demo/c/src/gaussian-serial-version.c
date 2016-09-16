@@ -99,9 +99,8 @@ float* backward_substitution(int N, float** A){
 	for (int i=N-1; i>=0; i--){
 		x[i] = A[i][N];
 		for (int j=(N-1); j>i; j--){
-			printf("x[%d]=%2.5f (A[%d][%d]=%2.5f * x[%d]=%2.5f)\n",i,x[i],i,j,A[i][j],j,x[j]);
+	//		printf("x[%d]=%2.5f (A[%d][%d]=%2.5f * x[%d]=%2.5f)\n",i,x[i],i,j,A[i][j],j,x[j]);
 			x[i] -= (A[i][j] * x[j]);
-			
 		}
 		x[i] = x[i]/A[i][i];
 	}
