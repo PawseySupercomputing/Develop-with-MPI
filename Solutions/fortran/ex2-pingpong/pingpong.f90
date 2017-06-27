@@ -1,7 +1,7 @@
 program pingpong
 
   ! An MPI program to send a message back and forth between two ranks
-  ! using a blocking, synchronous send mpi_ssend(), and a blocking
+  ! using a blocking send mpi_send(), and a blocking
   ! recieve mpi_recv().
 
   use mpi
@@ -42,7 +42,7 @@ program pingpong
      recver = 1 - sender
 
      if (rank == sender) then
-        call mpi_ssend(sendbuffer, 1, MPI_INTEGER, recver, my_tag, &
+        call mpi_send(sendbuffer, 1, MPI_INTEGER, recver, my_tag, &
                        MPI_COMM_WORLD, ifail)
      else
         call mpi_recv(recvbuffer, 1, MPI_INTEGER, sender, my_tag, &

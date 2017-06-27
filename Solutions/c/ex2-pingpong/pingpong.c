@@ -1,7 +1,7 @@
 /******************************************************************************
  *
  * An MPI program to send a message back and forth between two ranks
- *  using a blocking, synchronous send mpi_ssend(), and a blocking
+ *  using a blocking send mpi_send(), and a blocking
  *  recieve mpi_recv().
  *
  ******************************************************************************/
@@ -46,7 +46,7 @@ int main (int argc, char* argv[]){
         recver = 1 - sender;
 
         if ( rank == sender ){
-        	MPI_Ssend(&sendbuffer, 1, MPI_INT, recver, my_tag, MPI_COMM_WORLD);
+        	MPI_Send(&sendbuffer, 1, MPI_INT, recver, my_tag, MPI_COMM_WORLD);
         }
         else {
         	MPI_Recv(&recvbuffer, 1, MPI_INT, sender, my_tag, MPI_COMM_WORLD, &status);
