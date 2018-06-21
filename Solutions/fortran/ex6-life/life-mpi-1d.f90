@@ -176,7 +176,7 @@ program life
 
      ! output
 
-     call mpi_reduce(lcount, ncount, 1, MPI_INTEGER, MPI_SUM, 0, comm)
+     call mpi_reduce(lcount, ncount, 1, MPI_INTEGER, MPI_SUM, 0, comm, ifail)
 
      if (rank == 0) then
         write (unit = *, fmt = '(a,i3,i3)') "Step, count: ", n, ncount 
